@@ -56,4 +56,28 @@ class Job:
         else:
             raise ValueError("Level must be a non-empty string")
     #add rule about length (no more than 3 letters = len(level) < 4)
+
+
+
+
+
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS jobs (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            team TEXT,
+            location TEXT,
+            level TEXT)
+         """
+         CURSOR.execute(sql)
+         CONN.commit()
     
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS jobs;
+         """
+         CURSOR.execute(sql)
+         CONN.commit()
