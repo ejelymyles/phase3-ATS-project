@@ -101,3 +101,12 @@ class Job:
         job.save()
         return job
     
+
+    def update(self):
+        sql = """
+            UPDATE jobs
+            SET name = ?, team = ?, location = ?, level = ?
+            WHERE id = ?
+         """
+         CURSOR.execute(sql, (self.name, self.team, self.location, self.level))
+         CONN.commit()
