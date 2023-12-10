@@ -1,16 +1,17 @@
 from models.__init__ import CURSOR, CONN
-from models.role import Role
+from models.job import Job
 
 class Candidate:
     
     all = {}
 
-    def __init__(self, name, title, location, stage, id=None ):
+    def __init__(self, name, title, location, stage, job_id, id=None ):
         self.id = id
         self.name = name
         self.title = title
         self.location = location
         self.stage = stage
+        self.job_id = job_id
 
 
     @property
@@ -56,3 +57,15 @@ class Candidate:
             self._stage = stage
         else:
             raise ValueError("Stage must be a non-empty string")
+
+    @property
+    def job_id(self):
+        return self._job_id
+
+    @job_id.setter
+    def job_id(self, job_id):
+        if type(job_id) is int and Job.find_by_id(job_id):
+            self._job_id = job_id
+        else:
+            raise ValueError(
+                "job_id must reference a job in the database")
