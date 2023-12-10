@@ -99,3 +99,14 @@ class Candidate:
          CONN.commit()
 
         
+
+    def save(self):
+        sql= """
+                INSERT INTO candidates (name, title, location, stage, job_id)
+                VALUES (?, ?, ?, ?, ?)
+         """
+         CURSOR.execute(sql, (self.name, self.title, self.location, self.stage, self.job_id))
+         CONN.commit()
+
+         self.id = CURSOR.lastrowid
+         type(self).all[self.id] = self 
