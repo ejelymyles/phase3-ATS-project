@@ -117,3 +117,12 @@ class Candidate:
         candidate = cls(name, title, location, stage, job_id)
         candidate.save()
         return candidate
+
+    def update(self):
+        sql = """
+            UPDATE candidates
+            SET name = ?, title = ?, location = ?, stage = ?, job_id = ?
+            WHERE id = ?
+         """
+         CURSOR.execute.(sql, (self.name, self.title, self.location, self.stage, self.job_id))
+         CONN.commit()
