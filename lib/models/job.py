@@ -123,6 +123,21 @@ class Job:
          self.id = None
 
     
+
+    @classmethod
+    def instance_from_db(cls, row):
+        job = cls.all.get(row[0])
+        if job:
+            job.name = row[1]
+            job.team = row[2]
+            job.location = row[3]
+            job.level = row[4]
+        else:
+            job = cls(row[1], row[2], row[3], row[4])
+            job.id = row[0]
+            cls.all[job.id] = job
+        return job
+
     @classmethod
     def get_all(cls):
         sql = """
