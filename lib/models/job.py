@@ -93,3 +93,11 @@ class Job:
 
          self.id = CURSOR.lastrowid
          type(self).all[self.id] = self 
+
+
+    @classmethod
+    def create(cls, name, team, location, level):
+        job = cls(name, team, location, level)
+        job.save()
+        return job
+    
