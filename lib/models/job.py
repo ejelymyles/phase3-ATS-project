@@ -110,3 +110,16 @@ class Job:
          """
          CURSOR.execute(sql, (self.name, self.team, self.location, self.level))
          CONN.commit()
+
+    def delete(self):
+        sql = """
+            DELETE FROM jobs
+            WHERE id = ?
+         """
+         CURSOR.execute(sql, (self.id,))
+         CONN.commit()
+
+         del type(self).all[self.id]
+         self.id = None
+
+        
