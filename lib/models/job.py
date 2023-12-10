@@ -81,3 +81,15 @@ class Job:
          """
          CURSOR.execute(sql)
          CONN.commit()
+
+    
+    def save(self):
+        sql="""
+            INSERT INTO jobs (name, team, location, level)
+            VALUES (?, ?, ?, ?)
+         """
+         CURSOR.execute(sql, (self.name, self.team, self.location, self.level))
+         CONN.commit()
+
+         self.id = CURSOR.lastrowid
+         type(self).all[self.id] = self 

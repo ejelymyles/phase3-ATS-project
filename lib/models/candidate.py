@@ -72,6 +72,9 @@ class Candidate:
 
 
     
+
+
+
     @classmethod
     def create_table(cls):
         sql = """
@@ -94,3 +97,5 @@ class Candidate:
          """
          CURSOR.execute(sql)
          CONN.commit()
+
+        
