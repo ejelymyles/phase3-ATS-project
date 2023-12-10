@@ -122,4 +122,16 @@ class Job:
          del type(self).all[self.id]
          self.id = None
 
+    
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT * 
+            FROM jobs
+        """
+        rows = CURSOR.execute(sql).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
+
+    
+
         
