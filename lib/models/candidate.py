@@ -138,6 +138,22 @@ class Candidate:
         del type(self).all[self.id]
         self.id = None
 
+    
+    @classmethod
+    def instance_from_db(cls, row):
+        candidate = cls.all.get(row[0])
+        if candidate:
+            candidate.name = row[1]
+            candidate.title = row[2]
+            candidate.location = row[3]
+            candidate.stage = row[4]
+            candidate.job_id = row[5]
+        else:
+            candidate = cls(row[1], row[2], row[3], row[4], row[5])
+            candidate.id = row[0]
+            cls.all[candidate.id] = candidate
+        return candidate
+
 
     @classmethod
     def get_all(cls):
