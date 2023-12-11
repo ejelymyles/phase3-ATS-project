@@ -17,7 +17,7 @@ def main():
         elif choice == "2":
             print("seeing all jobs helper function")
         elif choice == "3":
-            print("finding job by helper function")
+            print("finding job by name helper function")
         elif choice == "4":
             print("finding job by id helper function")
         elif choice == "5":
