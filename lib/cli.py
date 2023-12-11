@@ -2,7 +2,19 @@
 
 from helpers import (
     exit_program,
-    helper_1
+    add_new_job,
+    list_all_jobs,
+    find_job_by_name,
+    find_job_by_id,
+    update_job,
+    delete_job,
+    add_new_candidate,
+    list_all_candidates,
+    find_candidate_by_name,
+    find_candidate_by_id,
+    update_candidate,
+    delete_candidate,
+    list_job_candidates,
 )
 
 
@@ -13,33 +25,33 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            print("creating new job helper function")
+            add_new_job()
         elif choice == "2":
-            print("seeing all jobs helper function")
+            list_all_jobs()
         elif choice == "3":
-            print("finding job by name helper function")
+            find_job_by_name()
         elif choice == "4":
-            print("finding job by id helper function")
+            find_job_by_id()
         elif choice == "5":
-            print("updating an existing job helper function")
+            update_job()
         elif choice == "6":
-            print("deleting a job helper function")
+            delete_job()
         elif choice == "7":
-            print("adding a new candidate helper function")
+            add_new_candidate()
         elif choice == "8":
-            print("seeing all active candidates helper function")
+            list_all_candidates()
         elif choice == "9":
-            print("finding a candidate by name helper function")
+            find_candidate_by_name()
         elif choice == "10":
-            print("finding a candidate by id helper function")
+            find_candidate_by_id()
         elif choice == "11":
-            print("updating a candidate helper function")
+            update_candidate()
         elif choice == "12":
-            print("rejecting a candidate helper function")
+            delete_candidate()
         elif choice == "13":
-            print("see all candidates from a job helper function ")
+            list_job_candidates()
         else:
-            print("Invalid choice")
+            print("Invalid Choice: You must choose an option from the menu")
 
 
 def menu():
