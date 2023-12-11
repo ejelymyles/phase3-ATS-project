@@ -13,7 +13,31 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            helper_1()
+            print("creating new job helper function")
+        elif choice == "2":
+            print("seeing all jobs helper function")
+        elif choice == "3":
+            print("finding job by helper function")
+        elif choice == "4":
+            print("finding job by id helper function")
+        elif choice == "5":
+            print("updating an existing job helper function")
+        elif choice == "6":
+            print("deleting a job helper function")
+        elif choice == "7":
+            print("adding a new candidate helper function")
+        elif choice == "8":
+            print("seeing all active candidates helper function")
+        elif choice == "9":
+            print("finding a candidate by name helper function")
+        elif choice == "10":
+            print("finding a candidate by id helper function")
+        elif choice == "11":
+            print("updating a candidate helper function")
+        elif choice == "12":
+            print("rejecting a candidate helper function")
+        elif choice == "13":
+            print("see all candidates from a job helper function ")
         else:
             print("Invalid choice")
 
