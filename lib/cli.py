@@ -56,9 +56,9 @@ def main():
 
 def menu():
     print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Create a job")
-    print("2. See all open jobs")
+    print("0. Exit the Applicant Tracking System")
+    print("1. Create a new job")
+    print("2. Vew all jobs")
     print("3. Find a job by name")
     print("4. Find a job by id")
     print("5. Update an existing job")
@@ -68,8 +68,8 @@ def menu():
     print("9. Find a candidate by name")
     print("10. Find a candidate by id ")
     print("11. Update a candidate")
-    print("12. Reject a candidate")
-    print("13. List all candidates from a job")
+    print("12. Reject/delete a candidate")
+    print("13. List all candidates from a specific job")
 
 
 

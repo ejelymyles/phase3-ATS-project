@@ -2,12 +2,11 @@
 from models.job import Job
 from models.candidate import Candidate
 
-def helper_1():
-    print("Performing useful function#1.")
+
 
 
 def exit_program():
-    print("Goodbye!")
+    print("Goodbye! You have now exited the Applicant Tracking System")
     exit()
 
 def add_new_job():
