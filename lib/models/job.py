@@ -71,16 +71,16 @@ class Job:
             location TEXT,
             level TEXT)
          """
-         CURSOR.execute(sql)
-         CONN.commit()
+        CURSOR.execute(sql)
+        CONN.commit()
     
     @classmethod
     def drop_table(cls):
         sql = """
             DROP TABLE IF EXISTS jobs;
          """
-         CURSOR.execute(sql)
-         CONN.commit()
+        CURSOR.execute(sql)
+        CONN.commit()
 
     
     def save(self):
@@ -88,11 +88,11 @@ class Job:
             INSERT INTO jobs (name, team, location, level)
             VALUES (?, ?, ?, ?)
          """
-         CURSOR.execute(sql, (self.name, self.team, self.location, self.level))
-         CONN.commit()
+        CURSOR.execute(sql, (self.name, self.team, self.location, self.level))
+        CONN.commit()
 
-         self.id = CURSOR.lastrowid
-         type(self).all[self.id] = self 
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self 
 
 
     @classmethod
@@ -108,19 +108,19 @@ class Job:
             SET name = ?, team = ?, location = ?, level = ?
             WHERE id = ?
          """
-         CURSOR.execute(sql, (self.name, self.team, self.location, self.level))
-         CONN.commit()
+        CURSOR.execute(sql, (self.name, self.team, self.location, self.level))
+        CONN.commit()
 
     def delete(self):
         sql = """
             DELETE FROM jobs
             WHERE id = ?
          """
-         CURSOR.execute(sql, (self.id,))
-         CONN.commit()
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
 
-         del type(self).all[self.id]
-         self.id = None
+        del type(self).all[self.id]
+        self.id = None
 
     
 
@@ -155,8 +155,8 @@ class Job:
             FROM jobs
             WHERE id = ?
          """
-         row = CURSOR.execute(sql, (id,)).fetchone()
-         return cls.instance_from_db(row) if row else None
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
 
 
     @classmethod
@@ -166,8 +166,8 @@ class Job:
             FROM jobs
             WHERE name is ?
          """
-         row = CURSOR.execute(sql, (name,)).fetchone()
-         return cls.instance_from_db(row) if row else None
+        row = CURSOR.execute(sql, (name,)).fetchone()
+        return cls.instance_from_db(row) if row else None
     
 
         

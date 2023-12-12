@@ -87,16 +87,16 @@ class Candidate:
             job_id INTEGER,
             FOREIGN KEY (job_id) REFERENCES jobs(id))
          """
-         CURSOR.execute(sql)
-         CONN.commit()
+        CURSOR.execute(sql)
+        CONN.commit()
     
     @classmethod
     def drop_table(cls):
         sql = """
             DROP TABLE IF EXISTS candidates;
          """
-         CURSOR.execute(sql)
-         CONN.commit()
+        CURSOR.execute(sql)
+        CONN.commit()
 
         
 
@@ -105,11 +105,11 @@ class Candidate:
                 INSERT INTO candidates (name, title, location, stage, job_id)
                 VALUES (?, ?, ?, ?, ?)
          """
-         CURSOR.execute(sql, (self.name, self.title, self.location, self.stage, self.job_id))
-         CONN.commit()
+        CURSOR.execute(sql, (self.name, self.title, self.location, self.stage, self.job_id))
+        CONN.commit()
 
-         self.id = CURSOR.lastrowid
-         type(self).all[self.id] = self 
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self 
 
 
     @classmethod
@@ -124,8 +124,8 @@ class Candidate:
             SET name = ?, title = ?, location = ?, stage = ?, job_id = ?
             WHERE id = ?
          """
-         CURSOR.execute.(sql, (self.name, self.title, self.location, self.stage, self.job_id))
-         CONN.commit()
+        CURSOR.execute(sql, (self.name, self.title, self.location, self.stage, self.job_id))
+        CONN.commit()
 
     def delete(self):
         sql = """
@@ -161,8 +161,8 @@ class Candidate:
             SELECT *
             FROM candidates
          """
-         rows = CURSOR.execute(sql).fetchall()
-         return [cls.instance_from_db(row) for row in rows]
+        rows = CURSOR.execute(sql).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
 
 
     @classmethod
@@ -183,5 +183,5 @@ class Candidate:
             FROM candidates
             WHERE name is ?
          """
-         row = CURSOR.execute(sql, (name,)).fetchone()
-         return cls.instance_from_db(row) if row else None
+        row = CURSOR.execute(sql, (name,)).fetchone()
+        return cls.instance_from_db(row) if row else None
