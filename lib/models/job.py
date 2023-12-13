@@ -11,6 +11,9 @@ class Job:
         self.location = location
         self.level = level
 
+    def __repr__(self):
+        return f"<Job {self.id}: {self.name}, {self.team}, {self.location}, {self.level}>"
+
     
     @property
     def name(self):
@@ -108,8 +111,9 @@ class Job:
             SET name = ?, team = ?, location = ?, level = ?
             WHERE id = ?
          """
-        CURSOR.execute(sql, (self.name, self.team, self.location, self.level))
+        CURSOR.execute(sql, (self.name, self.team, self.location, self.level, self.id))
         CONN.commit()
+        
 
     def delete(self):
         sql = """

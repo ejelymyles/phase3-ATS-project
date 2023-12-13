@@ -13,6 +13,12 @@ class Candidate:
         self.stage = stage
         self.job_id = job_id
 
+    def __repr__(self):
+        return(
+            f"<Candidate {self.id}: {self.name}, {self.title}, {self.location}, {self.stage}, " +
+            f"Job ID: {self.job_id}>"
+        )
+
 
     @property
     def name(self):
@@ -124,8 +130,9 @@ class Candidate:
             SET name = ?, title = ?, location = ?, stage = ?, job_id = ?
             WHERE id = ?
          """
-        CURSOR.execute(sql, (self.name, self.title, self.location, self.stage, self.job_id))
+        CURSOR.execute(sql, (self.name, self.title, self.location, self.stage, self.job_id, self.id))
         CONN.commit()
+        
 
     def delete(self):
         sql = """
