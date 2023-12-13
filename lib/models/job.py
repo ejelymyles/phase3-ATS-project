@@ -172,6 +172,16 @@ class Job:
          """
         row = CURSOR.execute(sql, (name,)).fetchone()
         return cls.instance_from_db(row) if row else None
+
+    def candidates(self):
+        from models.candidate import Candidate
+        sql = """
+            SELECT * FROM candidates
+            WHERE job_id = ?
+         """
+        CURSOR.execute(sql, (self.id,),)
+        rows = CURSOR.fetchall()
+        return[Candidate.instance_from_db(row) for row in rows]
     
 
         
