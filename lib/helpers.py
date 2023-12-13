@@ -142,5 +142,15 @@ def delete_candidate():
         print(f'Candidate {id_} was not found')
 
         
-def list_job_candidates():
-    print("see all candidates from a job helper function ")
+def list_candidates_from_job():
+    id_ = input("Enter the job ID: ")
+    if job := Job.find_by_id(id_):
+        candidates = job.candidates()
+        if candidates:
+            for candidate in candidates:
+                print(candidate)
+        else:
+            print(f'No candidates interviewing for job {job.name}')
+    else:
+        print(f'Job {id_} not found')
+    

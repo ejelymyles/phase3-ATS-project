@@ -49,7 +49,7 @@ def main():
         elif choice == "12":
             delete_candidate()
         elif choice == "13":
-            list_job_candidates()
+            list_candidates_from_job()
         else:
             print("Invalid Choice: You must choose an option from the menu")
 
