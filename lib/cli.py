@@ -14,7 +14,7 @@ from helpers import (
     find_candidate_by_id,
     update_candidate,
     delete_candidate,
-    list_job_candidates,
+    list_candidates_from_job,
 )
 
 

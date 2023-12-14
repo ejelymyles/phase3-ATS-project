@@ -83,7 +83,7 @@ def add_new_candidate():
 
     if job:
         try:
-            candidate = Candidate.create(name, title, location, stage, id_)
+            candidate = Candidate.create(name, title, location, stage, int(id_))
             print(f'Successfully added: {candidate}')
         except Exception as exc:
             print("Error adding new candidate: ", exc)
@@ -107,7 +107,7 @@ def find_candidate_by_name():
 def find_candidate_by_id():
     id_ = input("Enter the candidate's ID: ")
     candidate = Candidate.find_by_id(id_)
-    print(candidate) if candidate else print(f'Candidate {name} was not found')
+    print(candidate) if candidate else print(f'Candidate {id_} was not found')
 
 
 def update_candidate():
@@ -123,7 +123,7 @@ def update_candidate():
             stage = input("Update the candidate's current stage: ")
             candidate.stage = stage
             new_id = input("Update the candidate's Job ID: ")
-            candidate.job_id = new_id
+            candidate.job_id = int(new_id)
 
             candidate.update()
             print(f'Succesfully updated: {candidate}')
