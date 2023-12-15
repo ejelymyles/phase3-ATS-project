@@ -17,7 +17,7 @@ def add_new_job():
     level = input("Enter the target level: ")
     try:
         job = Job.create(name, team, location, level)
-        print(f'Successfully created: {job}')
+        print(f'Successfully created: {job.name}')
     except Exception as exc:
         print("Error creating new job: ", exc)
 
@@ -25,19 +25,19 @@ def add_new_job():
 def list_all_jobs():
     jobs = Job.get_all()
     for job in jobs:
-        print(job)
+        print(f'{job.name} - {job.team} - {job.location} - {job.level}')
 
 
 def find_job_by_name():
     name = input("Enter the job's title: ")
     job = Job.find_by_name(name)
-    print(job) if job else print(f'Sorry, the job {name} was not found')
+    print(f'{job.name} - {job.team} - {job.location} - {job.level}') if job else print(f'Sorry, the job {name} was not found')
 
 
 def find_job_by_id():
     id_ = input("Enter the job ID: ")
     job = Job.find_by_id(id_)
-    print(job) if job else print(f'Sorry, the job {id_} was not found')
+    print(f'{job.name} - {job.team} - {job.location} - {job.level}') if job else print(f'Sorry, the job {id_} was not found')
 
 
 
@@ -55,7 +55,7 @@ def update_job():
             job.level = level
             job.update()
 
-            print(f'Successfuly updated: {job}')
+            print(f'Successfuly updated: {job.name} - {job.team} - {job.location} - {job.level}')
         except Exception as exc:
             print("Error updating job: ", exc)
     else:
@@ -84,7 +84,7 @@ def add_new_candidate():
     if job:
         try:
             candidate = Candidate.create(name, title, location, stage, int(id_))
-            print(f'Successfully added: {candidate}')
+            print(f'Successfully added: {candidate.name}')
         except Exception as exc:
             print("Error adding new candidate: ", exc)
     else:
@@ -94,20 +94,20 @@ def add_new_candidate():
 def list_all_candidates():
     candidates = Candidate.get_all()
     for candidate in candidates:
-        print(candidate)
+        print(f'{candidate.name} - {candidate.title} - {candidate.location} - {candidate.stage} - Job ID:{candidate.job_id}')
 
 
 
 def find_candidate_by_name():
     name = input("Enter the candidate's name: ")
     candidate = Candidate.find_by_name(name)
-    print(candidate) if candidate else print(f'Candidate {name} was not found')
+    print(f'{candidate.name} - {candidate.title} - {candidate.location}') if candidate else print(f'Candidate {name} was not found')
 
 
 def find_candidate_by_id():
     id_ = input("Enter the candidate's ID: ")
     candidate = Candidate.find_by_id(id_)
-    print(candidate) if candidate else print(f'Candidate {id_} was not found')
+    print(f'{candidate.name} - {candidate.title} - {candidate.location}') if candidate else print(f'Candidate {id_} was not found')
 
 
 def update_candidate():
@@ -126,7 +126,7 @@ def update_candidate():
             candidate.job_id = int(new_id)
 
             candidate.update()
-            print(f'Succesfully updated: {candidate}')
+            print(f'Succesfully updated: {candidate.name} - {candidate.title} - {candidate.location} - {candidate.stage}')
         except Exception as exc:
             print("Error updating the candidate: ", exc)
     else:
@@ -148,7 +148,7 @@ def list_candidates_from_job():
         candidates = job.candidates()
         if candidates:
             for candidate in candidates:
-                print(candidate)
+                print(candidate.name)
         else:
             print(f'No candidates interviewing for job {job.name}')
     else:
