@@ -33,15 +33,15 @@ Below is the directory structure:
 
 ## Job Model 
 
-The Job model represents the various open roles the recruiter may be hiring for. It is the "one" in the one-to-many relationship with Candidates.
+The Job model represents the various open roles the recruiter may be hiring for. It is the "one" component the one-to-many relationship with Candidates.
 In otherwords one job can have many candidates, but candidates can only belong to one job. Jobs are initialized with Name, Team, Location, and Level attributes.
 Level refers the the level of seniority or years of experience the team is targeting or the ideal candidate. 
 
-Each attribute is decorated with a property that restricts what type of input must for that particular attribute. In the Job model, each attribute must be inputted as a String.
+Each attribute is decorated with a property that restricts what type of input must be used that particular attribute. In the Job model, each attribute must be inputted as a String.
 
 The model contains the following Class methods:
 1. create_table - creates a jobs table in the database if none exists
-2. drop_table - delete the jobs table from the database if one exists
+2. drop_table - deletes the jobs table from the database if one exists
 3. create - creates and saves a  new job to the database
 4. instance_from_db - returns a job from the database
 5. get_all - returns all of the jobs from the database
@@ -50,7 +50,7 @@ The model contains the following Class methods:
 
 The model contains the following Instance methods:
 1. save - saves a job to the database
-2. update - updates a current job in the database
+2. update - updates a job in the database
 3. delete - deletes a job from the database
 4. candidates - returns all of the candidates associated with a specific job in the database
 
@@ -60,29 +60,48 @@ The model contains the following Instance methods:
 
 ## Candidate Model
 
-You might have noticed in the file structure- there's already a Pipfile!
+The Candidate model represents the candidates that are interviewing for various jobs. It is the "many" component of the one-to-many relationship with Jobs.
+In otherwords one job can have many candidates, but candidates can only interview for one job. Candidates are initialized with Name, Title, Location, Stage, and Job ID attributes.
+Stage refers to the specific interview round the candidate is currently going through, or will go through next. 
 
-Install any additional dependencies you know you'll need for your project by
-adding them to the `Pipfile`. Then run the commands:
+Each attribute is decorated with a property that restricts what type of input must be used for that particular attribute. In the Candidate model the Name, Title, Location, and Stage attributes must be inputted as a string. the Job ID attribute must be inputted as an Integer. 
 
-```console
-pipenv install
-pipenv shell
-```
+The model contains the following Class methods:
+1. create_table - creates a candidates table in the database if none exists
+2. drop_table - deletes the candidates table from the database if one exists
+3. create - creates and saves a  new candidate to the database
+4. instance_from_db - returns a candidate from the database
+5. get_all - returns all of the candidates from the database
+6. find_by_id - returns a specific candidate based on it's ID number
+7. find_by_name - returns a specific candidate based on it's name
+
+The model contains the following Instance methods:
+1. save - saves a candidate to the database
+2. update - updates a candidate in the database
+3. delete - deletes a candidate from the database
 
 ---
 
 ## Helpers
 
-You might have noticed in the file structure- there's already a Pipfile!
+The helpers file contains a number of functions that will prompt the user for information, and use that information along with methods from the Job and Candidate models to execute their commands from the command line interface. The helper functions will provide statements to validate user actions, and alert the user when a particular action cannot be executed. The validation statements will also provide information on why the user's actions could not be executed. 
 
-Install any additional dependencies you know you'll need for your project by
-adding them to the `Pipfile`. Then run the commands:
+The helper functions included in the file include:
+1. exit_program - allows the user to exit out of the CLI menue and program
+2. add_new_job - adds a new job to the database based on inputs from the user
+3. list_all_jobs - displays all of the jobs from the database
+4. find_job_by_name - displays a specific job matching a name inputted by the user
+5. find_job_by_id - displays a specific job matching an ID inputted by the user
+6. update_job - updates a specific job based on inputs from the user
+7. delete_job - deletes a specific job based on the job ID inputted by the user
+8. add_new_candidate - adds a new candidate to the database based on inputs from the user 
+9. list_all_candidates - displays all of the candidates from the database
+10. find_candidate_by_name - displays a specific candidate matching a name inputted by the user
+11. find_candidate_by_id - displays a specific candidate matching an ID inputted by the user
+12. update_candiate - updates a specific candidate based on inputs from the user
+13. delete_candidate - deletes a specific candidate based on the candidate ID inputted by the user
+14. list_candidates_from_job - displays all of the candidates associated with a specific job
 
-```console
-pipenv install
-pipenv shell
-```
 
 ---
 
@@ -169,10 +188,6 @@ related to:
 
 
 ### What Goes into a README?
-
-Each Python file
-that you edit should get at least a paragraph, and each function should be
-described with a sentence or two.
 
 Describe your actual CLI script first, and with a good level of detail. The rest
 should be ordered by importance to the user. (Probably functions next, then
