@@ -9,13 +9,13 @@
 
 ## Introduction
 
-For a recruiter, and applicant tracking system is a tool used to maintain all of the candidates interviewing for open roles.
-It is helpful for providing recruiting updates to teams, communicating with candidates, and tracking data related to the the hiring process for specific roles. 
+For a recruiter, an applicant tracking system is a tool used to manage all of the candidates interviewing for open roles.
+It is helpful for providing recruiting updates to teams, communicating with candidates, and tracking data related to the hiring process for specific roles. 
 
 ## File Structure
 Below is the directory structure:
 
-```console
+```
 .
 ├── Pipfile
 ├── Pipfile.lock
@@ -29,6 +29,121 @@ Below is the directory structure:
     ├── debug.py
     └── helpers.py
 ```
+---
+
+## The CLI
+
+The CLI is an interactive script that prompts the user for information and performs operations based on the user's input.
+
+The project has a CLI in `lib/cli.py` that looks like this:
+
+```py
+# lib/cli.py
+
+from helpers import (
+    exit_program,
+    add_new_job,
+    list_all_jobs,
+    find_job_by_name,
+    find_job_by_id,
+    update_job,
+    delete_job,
+    add_new_candidate,
+    list_all_candidates,
+    find_candidate_by_name,
+    find_candidate_by_id,
+    update_candidate,
+    delete_candidate,
+    list_candidates_from_job,
+)
+
+
+def main():
+    while True:
+        menu()
+        choice = input("> ")
+        if choice == "0":
+            exit_program()
+        elif choice == "1":
+            add_new_job()
+        elif choice == "2":
+            list_all_jobs()
+        elif choice == "3":
+            find_job_by_name()
+        elif choice == "4":
+            find_job_by_id()
+        elif choice == "5":
+            update_job()
+        elif choice == "6":
+            delete_job()
+        elif choice == "7":
+            add_new_candidate()
+        elif choice == "8":
+            list_all_candidates()
+        elif choice == "9":
+            find_candidate_by_name()
+        elif choice == "10":
+            find_candidate_by_id()
+        elif choice == "11":
+            update_candidate()
+        elif choice == "12":
+            delete_candidate()
+        elif choice == "13":
+            list_candidates_from_job()
+        else:
+            print("Invalid Choice: You must choose an option from the menu")
+
+
+def menu():
+    print("Please select an option:")
+    print("0. Exit the Applicant Tracking System")
+    print("1. Create a new job")
+    print("2. Vew all jobs")
+    print("3. Find a job by name")
+    print("4. Find a job by id")
+    print("5. Update an existing job")
+    print("6. Delete a job")
+    print("7. Add a new candidate")
+    print("8. See all active candidates")
+    print("9. Find a candidate by name")
+    print("10. Find a candidate by id ")
+    print("11. Update a candidate")
+    print("12. Reject/delete a candidate")
+    print("13. List all candidates from a specific job")
+
+
+if __name__ == "__main__":
+    main()
+    
+```
+
+You can run the CLI with `python lib/cli.py`, or include the shebang
+and make it executable with `chmod +x`. 
+The CLI will ask for input related to managing the applicant tracking system, query the database, and/or accomplish some sort of task.
+From the CLI menu you can create, view, find (by name or ID), update, and delete Jobs and Candidates. You can also view all candidates from a specific job
+
+---
+
+## The Helper Functions
+
+The helpers file contains a number of functions that will prompt the user for information, and use that information along with methods from the Job and Candidate models to execute their commands from the command line interface. The helper functions will provide statements to validate user actions, and alert the user when a particular action cannot be executed. The validation statements will also provide information on why the user's actions could not be executed. 
+
+The helper functions included in the file include:
+1. exit_program - allows the user to exit out of the CLI menue and program
+2. add_new_job - adds a new job to the database based on inputs from the user
+3. list_all_jobs - displays all of the jobs from the database
+4. find_job_by_name - displays a specific job matching a name inputted by the user
+5. find_job_by_id - displays a specific job matching an ID inputted by the user
+6. update_job - updates a specific job based on inputs from the user
+7. delete_job - deletes a specific job based on the job ID inputted by the user
+8. add_new_candidate - adds a new candidate to the database based on inputs from the user 
+9. list_all_candidates - displays all of the candidates from the database
+10. find_candidate_by_name - displays a specific candidate matching a name inputted by the user
+11. find_candidate_by_id - displays a specific candidate matching an ID inputted by the user
+12. update_candiate - updates a specific candidate based on inputs from the user
+13. delete_candidate - deletes a specific candidate based on the candidate ID inputted by the user
+14. list_candidates_from_job - displays all of the candidates associated with a specific job
+
 ---
 
 ## Job Model 
@@ -53,8 +168,6 @@ The model contains the following Instance methods:
 2. update - updates a job in the database
 3. delete - deletes a job from the database
 4. candidates - returns all of the candidates associated with a specific job in the database
-
-
 
 ---
 
@@ -82,126 +195,10 @@ The model contains the following Instance methods:
 
 ---
 
-## Helpers
-
-The helpers file contains a number of functions that will prompt the user for information, and use that information along with methods from the Job and Candidate models to execute their commands from the command line interface. The helper functions will provide statements to validate user actions, and alert the user when a particular action cannot be executed. The validation statements will also provide information on why the user's actions could not be executed. 
-
-The helper functions included in the file include:
-1. exit_program - allows the user to exit out of the CLI menue and program
-2. add_new_job - adds a new job to the database based on inputs from the user
-3. list_all_jobs - displays all of the jobs from the database
-4. find_job_by_name - displays a specific job matching a name inputted by the user
-5. find_job_by_id - displays a specific job matching an ID inputted by the user
-6. update_job - updates a specific job based on inputs from the user
-7. delete_job - deletes a specific job based on the job ID inputted by the user
-8. add_new_candidate - adds a new candidate to the database based on inputs from the user 
-9. list_all_candidates - displays all of the candidates from the database
-10. find_candidate_by_name - displays a specific candidate matching a name inputted by the user
-11. find_candidate_by_id - displays a specific candidate matching an ID inputted by the user
-12. update_candiate - updates a specific candidate based on inputs from the user
-13. delete_candidate - deletes a specific candidate based on the candidate ID inputted by the user
-14. list_candidates_from_job - displays all of the candidates associated with a specific job
-
-
----
-
-## CLI
-
-A CLI is, simply put, an interactive script and prompts the user and performs
-operations based on user input.
-
-The project template has a sample CLI in `lib/cli.py` that looks like this:
-
-```py
-# lib/cli.py
-
-from helpers import (
-    exit_program,
-    helper_1
-)
-
-
-def main():
-    while True:
-        menu()
-        choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            helper_1()
-        else:
-            print("Invalid choice")
-
-
-def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Some useful function")
-
-
-if __name__ == "__main__":
-    main()
-```
-
-The helper functions are located in `lib/helpers.py`:
-
-```py
-# lib/helpers.py
-
-def helper_1():
-    print("Performing useful function#1.")
-
-
-def exit_program():
-    print("Goodbye!")
-    exit()
-```
-
-You can run the template CLI with `python lib/cli.py`, or include the shebang
-and make it executable with `chmod +x`. The template CLI will ask for input, do
-some work, and accomplish some sort of task.
-
-Past that, CLIs can be whatever you'd like, as long as you follow the project
-requirements.
-
-Of course, you will update `lib/cli.py` with prompts that are appropriate for
-your application, and you will update `lib/helpers.py` to replace `helper_1()`
-with a useful function based on the specific problem domain you decide to
-implement, along with adding other helper functions to the module.
-
-In the `lib/models` folder, you should rename `model_1.py` with the name of a
-data model class from your specific problem domain, and add other classes to the
-folder as needed. The file `lib/models/__init__.py` has been initialized to
-create the necessary database constants. You need to add import statements to
-the various data model classes in order to use the database constants.
-
-You are also welcome to implement a different module and directory structure.
-However, your project should be well organized, modular, and follow the design
-principal of separation of concerns, which means you should separate code
-related to:
-
-- User interface
-- Data persistence
-- Problem domain rules and logic
-
----
-
-
-### What Goes into a README?
-
-Describe your actual CLI script first, and with a good level of detail. The rest
-should be ordered by importance to the user. (Probably functions next, then
-models.)
-
----
-
 ## Conclusion
 
-A lot of work goes into a good CLI, but it all relies on concepts that you've
-practiced quite a bit by now. Hopefully this template and guide will get you off
-to a good start with your Phase 3 Project.
-
-Happy coding!
+This CLI application sums up the concepts learned in Phase 3 of my time at Flatiron School. I built this CLI to assist me in my daily life as a Technical Recruiter 
+helping to manage the real-world task of tracking my candidates through their interviewing process. 
 
 ---
 
