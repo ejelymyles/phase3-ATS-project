@@ -1,18 +1,19 @@
-# Phase 3 CLI+ORM Project Template
+# Phase 3 Project - Applicant Tracking System
 
-## Learning Goals
+##  Project Goals
 
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
+- Build an ORM using Python with 2 related data models
+- Build a CLI to query and execute updates to the database
 
 ---
 
 ## Introduction
 
-You now have a basic idea of what constitutes a CLI. Fork and clone this lesson
-for a project template for your CLI.
+For a recruiter, and applicant tracking system is a tool used to maintain all of the candidates interviewing for open roles.
+It is helpful for providing recruiting updates to teams, communicating with candidates, and tracking data related to the the hiring process for specific roles. 
 
-Take a look at the directory structure:
+## File Structure
+Below is the directory structure:
 
 ```console
 .
@@ -22,19 +23,42 @@ Take a look at the directory structure:
 └── lib
     ├── models
     │   ├── __init__.py
-    │   └── model_1.py
+    |   └── candidate.py
+    │   └── job.py
     ├── cli.py
     ├── debug.py
     └── helpers.py
 ```
+---
 
-Note: The directory also includes two files named `CONTRIBUTING.md` and
-`LICENSE.md` that are specific to Flatiron's curriculum. You can disregard or
-delete the files if you want.
+## Job Model 
+
+The Job model represents the various open roles the recruiter may be hiring for. It is the "one" in the one-to-many relationship with Candidates.
+In otherwords one job can have many candidates, but candidates can only belong to one job. Jobs are initialized with Name, Team, Location, and Level attributes.
+Level refers the the level of seniority or years of experience the team is targeting or the ideal candidate. 
+
+Each attribute is decorated with a property that restricts what type of input must for that particular attribute. In the Job model, each attribute must be inputted as a String.
+
+The model contains the following Class methods:
+1. create_table - creates a jobs table in the database if none exists
+2. drop_table - delete the jobs table from the database if one exists
+3. create - creates and saves a  new job to the database
+4. instance_from_db - returns a job from the database
+5. get_all - returns all of the jobs from the database
+6. find_by_id - returns a specific job based on it's ID number
+7. find_by_name - returns a specific job based on it's name
+
+The model contains the following Instance methods:
+1. save - saves a job to the database
+2. update - updates a current job in the database
+3. delete - deletes a job from the database
+4. candidates - returns all of the candidates associated with a specific job in the database
+
+
 
 ---
 
-## Generating Your Environment
+## Candidate Model
 
 You might have noticed in the file structure- there's already a Pipfile!
 
@@ -48,7 +72,21 @@ pipenv shell
 
 ---
 
-## Generating Your CLI
+## Helpers
+
+You might have noticed in the file structure- there's already a Pipfile!
+
+Install any additional dependencies you know you'll need for your project by
+adding them to the `Pipfile`. Then run the commands:
+
+```console
+pipenv install
+pipenv shell
+```
+
+---
+
+## CLI
 
 A CLI is, simply put, an interactive script and prompts the user and performs
 operations based on user input.
@@ -129,31 +167,16 @@ related to:
 
 ---
 
-## Updating README.md
-
-`README.md` is a Markdown file that should describe your project. You will
-replace the contents of this `README.md` file with a description of **your**
-actual project.
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this assignments's resources for a basic guide to Markdown.
 
 ### What Goes into a README?
 
-This README serves as a template. Replace the contents of this file to describe
-the important files in your project and describe what they do. Each Python file
+Each Python file
 that you edit should get at least a paragraph, and each function should be
 described with a sentence or two.
 
 Describe your actual CLI script first, and with a good level of detail. The rest
 should be ordered by importance to the user. (Probably functions next, then
 models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
 
 ---
 
