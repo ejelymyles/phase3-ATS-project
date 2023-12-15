@@ -66,7 +66,7 @@ def delete_job():
     id_ = input("Enter the job's ID: ")
     if job:= Job.find_by_id(id_):
         job.delete()
-        print(f'Job {id_} was deleted')
+        print(f'{job.name} was deleted')
     else:
         print(f'Job {id_} was not found')
 
@@ -88,7 +88,7 @@ def add_new_candidate():
         except Exception as exc:
             print("Error adding new candidate: ", exc)
     else:
-        print(f"Error: Job with ID {id} was not found.")
+        print(f"Error: Job with ID {id_} was not found.")
     
 
 def list_all_candidates():
@@ -137,7 +137,7 @@ def delete_candidate():
     id_ = input("Enter the candidate's ID: ")
     if candidate := Candidate.find_by_id(id_):
         candidate.delete()
-        print(f'Candidate {id_} was deleted')
+        print(f'{candidate.name} was deleted')
     else:
         print(f'Candidate {id_} was not found')
 
