@@ -129,7 +129,7 @@ From the CLI menu you can create, view, find (by name or ID), update, and delete
 The helpers file contains a number of functions that will prompt the user for information, and use that information along with methods from the Job and Candidate models to execute their commands from the command line interface. The helper functions will provide statements to validate user actions, and alert the user when a particular action cannot be executed. The validation statements will also provide information on why the user's actions could not be executed. 
 
 The helper functions included in the file include:
-1. exit_program - allows the user to exit out of the CLI menue and program
+1. exit_program - allows the user to exit out of the CLI menu and program
 2. add_new_job - adds a new job to the database based on inputs from the user
 3. list_all_jobs - displays all of the jobs from the database
 4. find_job_by_name - displays a specific job matching a name inputted by the user
@@ -148,16 +148,16 @@ The helper functions included in the file include:
 
 ## Job Model 
 
-The Job model represents the various open roles the recruiter may be hiring for. It is the "one" component the one-to-many relationship with Candidates.
+The Job model represents the various open roles the recruiter may be hiring for. It is the "one" component of the one-to-many relationship with Candidates.
 In otherwords one job can have many candidates, but candidates can only belong to one job. Jobs are initialized with Name, Team, Location, and Level attributes.
-Level refers the the level of seniority or years of experience the team is targeting or the ideal candidate. 
+Level refers the the level of seniority or years of experience the team is targeting for the ideal candidate. 
 
-Each attribute is decorated with a property that restricts what type of input must be used that particular attribute. In the Job model, each attribute must be inputted as a String.
+Each attribute is decorated with a property that restricts what type of input must be used for that particular attribute. In the Job model, each attribute must be inputted as a String.
 
 The model contains the following Class methods:
 1. create_table - creates a jobs table in the database if none exists
 2. drop_table - deletes the jobs table from the database if one exists
-3. create - creates and saves a  new job to the database
+3. create - creates and saves a new job to the database
 4. instance_from_db - returns a job from the database
 5. get_all - returns all of the jobs from the database
 6. find_by_id - returns a specific job based on it's ID number
@@ -182,7 +182,7 @@ Each attribute is decorated with a property that restricts what type of input mu
 The model contains the following Class methods:
 1. create_table - creates a candidates table in the database if none exists
 2. drop_table - deletes the candidates table from the database if one exists
-3. create - creates and saves a  new candidate to the database
+3. create - creates and saves a new candidate to the database
 4. instance_from_db - returns a candidate from the database
 5. get_all - returns all of the candidates from the database
 6. find_by_id - returns a specific candidate based on it's ID number
@@ -197,11 +197,6 @@ The model contains the following Instance methods:
 
 ## Conclusion
 
-This CLI application sums up the concepts learned in Phase 3 of my time at Flatiron School. I built this CLI to assist me in my daily life as a Technical Recruiter 
-helping to manage the real-world task of tracking my candidates through their interviewing process. 
+This CLI application sums up the concepts learned in Phase 3 of my time at Flatiron School. I built this CLI to assist me in my daily life as a Technical Recruiter by helping to manage the real-world task of tracking my candidates through their interviewing process. 
 
 ---
-
-## Resources
-
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
