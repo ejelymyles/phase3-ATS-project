@@ -26,7 +26,7 @@ class Candidate:
 
     @name.setter
     def name(self, name):
-        if isinstance(name, str) and len(name):
+        if isinstance(name, str) and len(name) > 0 and not name.isdigit():
             self._name = name
         else:
             raise ValueError("Name must be a non-empty string")
@@ -37,7 +37,7 @@ class Candidate:
 
     @title.setter
     def title(self, title):
-        if isinstance(title, str) and len(title):
+        if isinstance(title, str) and len(title) > 0 and not title.isdigit():
             self._title = title
         else:
             raise ValueError("Title must be a non-empty string")
@@ -48,7 +48,7 @@ class Candidate:
 
     @location.setter
     def location(self, location):
-        if isinstance(location, str) and len(location):
+        if isinstance(location, str) and len(location) > 0 and not location.isdigit():
             self._location = location
         else:
             raise ValueError("Location must be a non-empty string")
@@ -59,7 +59,7 @@ class Candidate:
 
     @stage.setter
     def stage(self, stage):
-        if isinstance(stage, str) and len(stage):
+        if isinstance(stage, str) and len(stage) > 0 and not stage.isdigit():
             self._stage = stage
         else:
             raise ValueError("Stage must be a non-empty string")

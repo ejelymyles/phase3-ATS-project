@@ -21,7 +21,7 @@ class Job:
 
     @name.setter
     def name(self, name):
-        if isinstance(name, str) and len(name):
+        if isinstance(name, str) and len(name) > 0 and not name.isdigit():
             self._name = name
         else:
             raise ValueError("Name must be a non-empty string")
@@ -32,7 +32,7 @@ class Job:
 
     @team.setter
     def team(self, team):
-        if isinstance(team, str) and len(team):
+        if isinstance(team, str) and len(team) > 0 and not team.isdigit():
             self._team = team
         else:
             raise ValueError("Team must be a non-empty string")
@@ -43,7 +43,7 @@ class Job:
 
     @location.setter
     def location(self, location):
-        if isinstance(location, str) and len(location):
+        if isinstance(location, str) and len(location) > 0 and not location.isdigit():
             self._location = location
         else:
             raise ValueError("Location must be a non-empty string")
@@ -58,7 +58,6 @@ class Job:
             self._level = level
         else:
             raise ValueError("Level must be a non-empty string")
-    #add rule about length (no more than 3 letters = len(level) < 4)
 
 
 
